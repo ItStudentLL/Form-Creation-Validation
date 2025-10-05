@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Email Validation
-        if (!email.includes("@") || !email.includes(".")) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
             isValid = false;
             messages.push("Please enter a valid email address.");
         }
@@ -33,15 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Display feedback
         feedbackDiv.style.display = "block";
+        feedbackDiv.style.padding = "12px";
 
         if (isValid) {
-            feedbackDiv.textContent = "Registration successful!";
-            feedbackDiv.style.color = "#28a745";
+            feedbackDiv.textContent = "✅ Registration successful!";
+            feedbackDiv.style.color = "#155724";
             feedbackDiv.style.backgroundColor = "#d4edda";
+            form.reset();
         } else {
             feedbackDiv.innerHTML = messages.join("<br>");
-            feedbackDiv.style.color = "#dc3545";
+            feedbackDiv.style.color = "#721c24";
             feedbackDiv.style.backgroundColor = "#f8d7da";
         }
     });
 });
+
